@@ -9,14 +9,26 @@ import java.io.IOException;
 import java.util.Set;
 
 public class WriteFileBookingUtil {
-    private static void writeFile(String path, String data) throws IOException {
-        File file = new File(path);
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-        bufferedWriter.write(data);
-        bufferedWriter.close();
+    private static void writeFile(String path, String data) {
+        BufferedWriter bufferedWriter = null;
+        try {
+            File file = new File(path);
+            bufferedWriter = new BufferedWriter(new FileWriter(file));
+            bufferedWriter.write(data);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }finally {
+            if (bufferedWriter != null) {
+                try {
+                    bufferedWriter.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 
-    public static void writeBookingFile(String path, Set<Booking> bookingSet) throws IOException {
+    public static void writeBookingFile(String path, Set<Booking> bookingSet){
         String data = "";
         for (Booking booking : bookingSet) {
             data += booking.getInfo();

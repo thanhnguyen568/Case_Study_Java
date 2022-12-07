@@ -5,11 +5,6 @@ import java.time.LocalDate;
 public class Customer extends Person{
     private int customerCode;
     private String customerType;
-//    public final String MEMBER = "Member";
-//    public final String SILVER = "Silver";
-//    public final String GOLD = "Gold";
-//    public final String PLATINUM = "Platinum";
-//    public final String DIAMOND = "Diamond";
     private String address;
 
     public Customer() {

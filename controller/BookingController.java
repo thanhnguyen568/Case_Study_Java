@@ -3,14 +3,13 @@ package controller;
 import service.impl.BookingServiceImpl;
 import service.impl.ContractServiceImpl;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class BookingController {
     static Scanner scanner = new Scanner(System.in);
     static int choice;
 
-    public static void bookingManagement() throws IOException {
+    public static void bookingManagement(){
         BookingServiceImpl bookingService = new BookingServiceImpl();
         ContractServiceImpl contractService = new ContractServiceImpl();
         do {
@@ -24,11 +23,11 @@ public class BookingController {
                         + "6.Return main menu\n"
                         + "Choice one option= ");
                 choice = Integer.parseInt(scanner.nextLine());
+                System.out.println("----------");
             } catch (NumberFormatException e) {
                 System.err.println("Enter option with wrong pattern, please re-do:");
-                choice = Integer.parseInt(scanner.nextLine());
+                choice = -1;
             }
-            System.out.println("----------");
         }while (choice < 1 || choice > 6);
 
         switch (choice) {

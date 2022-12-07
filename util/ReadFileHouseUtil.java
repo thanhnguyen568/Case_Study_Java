@@ -9,34 +9,47 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ReadFileHouseUtil {
-    public static Map<House, Integer> readFile(String FILE_PATH) throws IOException {
+    public static Map<House, Integer> readFile(String FILE_PATH) {
         Map<House, Integer> houseIntegerMap = new LinkedHashMap<>();
-        BufferedReader buff = new BufferedReader(new FileReader(FILE_PATH));
 
-        String line;
-        String[] temp;
-        House house;
+        BufferedReader buff = null;
+        try {
+            buff = new BufferedReader(new FileReader(FILE_PATH));
 
-        while ((line = buff.readLine()) != null) {
-            if (!"".equals(line)) {
-                temp = line.split(",");
+            String line;
+            String[] temp;
+            House house;
 
-                String codeService = temp[0];
-                String nameService = temp[1];
-                double usableArea = Double.parseDouble(temp[2]);
-                double rentalCosts = Double.parseDouble(temp[3]);
-                int maxNumberOfPeople = Integer.parseInt(temp[4]);
-                String rentalType = temp[5];
-                String roomStand = temp[6];
-                int numberOfFloors = Integer.parseInt(temp[7]);
-                int numberOfUses = Integer.parseInt(temp[8]);
+            while ((line = buff.readLine()) != null) {
+                if (!"".equals(line)) {
+                    temp = line.split(",");
 
-                house = new House( codeService,  nameService,  usableArea,  rentalCosts,  maxNumberOfPeople,  rentalType,  roomStand, numberOfFloors);
-                houseIntegerMap.put(house, numberOfUses);
+                    String codeService = temp[0];
+                    String nameService = temp[1];
+                    double usableArea = Double.parseDouble(temp[2]);
+                    double rentalCosts = Double.parseDouble(temp[3]);
+                    int maxNumberOfPeople = Integer.parseInt(temp[4]);
+                    String rentalType = temp[5];
+                    String roomStand = temp[6];
+                    int numberOfFloors = Integer.parseInt(temp[7]);
+                    int numberOfUses = Integer.parseInt(temp[8]);
+
+                    house = new House(codeService, nameService, usableArea, rentalCosts, maxNumberOfPeople, rentalType, roomStand, numberOfFloors);
+                    houseIntegerMap.put(house, numberOfUses);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (buff != null) {
+                try {
+                    buff.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
 
-        buff.close();
         return houseIntegerMap;
     }
 }

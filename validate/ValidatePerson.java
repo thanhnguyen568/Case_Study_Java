@@ -5,7 +5,6 @@ import model.Employee;
 import validate.regex.CustomizeRegex;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
@@ -23,18 +22,30 @@ public class ValidatePerson implements CustomizeRegex {
         return name;
     }
 
-    public static String birthDay() {
-        System.out.print("Birthday: ");
-        String birthDay = scanner.nextLine();
-        while (!birthDay.matches(REGEX_BIRTH_DAY)) {
-            System.err.println("Enter birth day with wrong pattern, please re-do:");
-            birthDay = scanner.nextLine();
+    //Write File
+    public static LocalDate birthDay() {
+        LocalDate birthday = null;
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        boolean flag = true;
+        while (flag) {
+            try {
+                System.out.print("Birthday: ");
+                birthday = LocalDate.parse(scanner.nextLine(), dateFormat);
+                LocalDate now = LocalDate.now();
+                if (now.getYear() - birthday.getYear() < 18 || now.getYear() - birthday.getYear() > 100) {
+                    throw new CustomizeException("Age You must be over 18 years old and less than 100 years old");
+                }
+                flag = false;
+            } catch (NumberFormatException | DateTimeParseException e) {
+                System.out.println("Date of Birth Incorrect Format (dd/MM/yyyy)");
+            } catch (CustomizeException e) {
+                e.printStackTrace();
+            }
         }
-        return birthDay;
+        return birthday;
     }
 
-
-
+    // Read File
     public static LocalDate parseLocalDate(String input){
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(input, dateFormat);
@@ -154,7 +165,8 @@ public class ValidatePerson implements CustomizeRegex {
 
     public static Employee infoEmployee() {
         String name = name();
-        LocalDate birthDay = parseLocalDate(birthDay());
+//        LocalDate birthDay = parseLocalDate(birthDay());
+        LocalDate birthDay = birthDay();
         String gender = gender();
         String idCode = idCode();
         String phone = phone();
@@ -168,7 +180,7 @@ public class ValidatePerson implements CustomizeRegex {
 
     public static Customer infoCustomer() {
         String name = name();
-        LocalDate birthDay = parseLocalDate(birthDay());
+        LocalDate birthDay = birthDay();
         String gender = gender();
         String idCode = idCode();
         String phone = phone();

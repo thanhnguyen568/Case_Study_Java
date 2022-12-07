@@ -5,17 +5,7 @@ import java.time.LocalDate;
 public class Employee extends Person {
     private int id;
     private String level;
-//    public final String INTERMEDIATE = "Intermediate";
-//    public final String COLLEGE = "College";
-//    public final String UNIVERSITY = "University";
-//    public final String AFTERUNIVERSITY = "AfterUniversity";
     private String position;
-//    public final String RECEPTIONIST = "Receptionist";
-//    public final String STAFF = "Staff";
-//    public final String EXPERTS = "Experts";
-//    public final String MONITORING = "Monitoring";
-//    public final String MANAGE = "Manage";
-//    public final String DIRECTOR = "Director";
     private int salary;
 
     public Employee(String name, LocalDate birthday, String gender, String identityCode, String phoneNumber, String email, int id, String level, String position, int salary) {

@@ -1,13 +1,12 @@
 package controller;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class PromotionController {
     static Scanner scanner = new Scanner(System.in);
     static int choice;
 
-    public static void promotionManagement() throws IOException {
+    public static void promotionManagement(){
 
         do {
             try {
@@ -17,11 +16,11 @@ public class PromotionController {
                         + "3.Return main menu\n"
                         + "Choice one option= ");
                 choice = Integer.parseInt(scanner.nextLine());
+                System.out.println("----------");
             }catch (NumberFormatException e){
                 System.err.println("Enter option with wrong pattern, please re-do:");
-                choice = Integer.parseInt(scanner.nextLine());
+                choice = -1;
             }
-            System.out.println("----------");
         }while (choice < 1 || choice > 3);
 
         switch (choice) {

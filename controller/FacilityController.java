@@ -2,14 +2,13 @@ package controller;
 
 import service.impl.FacilityServiceImpl;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class FacilityController {
     static Scanner scanner = new Scanner(System.in);
     static int choice;
 
-    public static void facilityManagement() throws IOException {
+    public static void facilityManagement() {
         FacilityServiceImpl facilityServiceImpl = new FacilityServiceImpl();
 
         do {
@@ -21,22 +20,25 @@ public class FacilityController {
                         + "4.Return main menu\n"
                         + "Choice one option= ");
                 choice = Integer.parseInt(scanner.nextLine());
+                System.out.println("----------");
             } catch (NumberFormatException e) {
                 System.err.println("Enter option with wrong pattern, please re-do:");
-                choice = Integer.parseInt(scanner.nextLine());
+                choice = -1;
             }
-            System.out.println("----------");
         } while (choice < 1 || choice > 4);
 
         switch (choice) {
             case 1:
                 facilityServiceImpl.display();
+                FuramaController.displayMainMenu();
                 break;
             case 2:
                 facilityServiceImpl.create();
+                FuramaController.displayMainMenu();
                 break;
             case 3:
                 facilityServiceImpl.displayMaintenance();
+                FuramaController.displayMainMenu();
                 break;
             case 4:
                 FuramaController.displayMainMenu();

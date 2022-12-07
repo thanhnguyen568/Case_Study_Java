@@ -2,7 +2,6 @@ package controller;
 
 import validate.CustomizeException;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class FuramaController {
@@ -22,38 +21,37 @@ public class FuramaController {
                         + "6.Exit\n"
                         + "Choice one option= ");
                 choice = Integer.parseInt(scanner.nextLine());
+                System.out.println("----------");
             } catch (NumberFormatException e) {
-                System.err.println("Enter option with wrong pattern, please re-do:");
-                choice = Integer.parseInt(scanner.nextLine());
+                try {
+                    throw new CustomizeException("Enter option with wrong pattern, please re-do:");
+                } catch (CustomizeException ex) {
+                    ex.printStackTrace();
+                }
+                choice = -1;
             }
-            System.out.println("----------");
         } while (choice < 0 || choice > 6);
 
-        try {
-            switch (choice) {
-                case 1:
-                    EmployeeController.employeeManagement();
-                    break;
-                case 2:
-                    CustomerController.customerManagement();
-                    break;
-                case 3:
-                    FacilityController.facilityManagement();
-                    break;
-                case 4:
-                    BookingController.bookingManagement();
-                    break;
-                case 5:
-                    PromotionController.promotionManagement();
-                    break;
-                case 6:
-                    System.out.println("Successful Exit!");
-                    System.exit(0);
-                    break;
-            }
-        } catch (IOException | CustomizeException e) {
-            e.printStackTrace();
-            displayMainMenu();
+        switch (choice) {
+            case 1:
+                EmployeeController.employeeManagement();
+                break;
+            case 2:
+                CustomerController.customerManagement();
+                break;
+            case 3:
+                FacilityController.facilityManagement();
+                break;
+            case 4:
+                BookingController.bookingManagement();
+                break;
+            case 5:
+                PromotionController.promotionManagement();
+                break;
+            case 6:
+                System.out.println("Successful Exit!");
+                System.exit(0);
+                break;
         }
     }
 }

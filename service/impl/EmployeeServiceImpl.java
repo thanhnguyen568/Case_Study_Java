@@ -5,11 +5,9 @@ import model.Employee;
 import service.EmployeeService;
 import util.ReadFileEmployeeUtil;
 import util.WriteFileEmployeeUtil;
-import validate.CustomizeException;
 import validate.regex.CustomizeRegex;
 import validate.ValidatePerson;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,7 +16,7 @@ public class EmployeeServiceImpl implements EmployeeService, CustomizeRegex {
     private static final String FILE_PATH = "D:\\CodeGym\\Case_Study_Java\\src\\data\\employee.csv";
 
     @Override
-    public void display() throws IOException {
+    public void display(){
         List<Employee> employeeList = ReadFileEmployeeUtil.readFile(FILE_PATH);
 
         System.out.println("Display list employees:");
@@ -32,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService, CustomizeRegex {
     }
 
     @Override
-    public void create() throws IOException {
+    public void create() {
         List<Employee> employeeList = ReadFileEmployeeUtil.readFile(FILE_PATH);
 
         /**
@@ -47,9 +45,8 @@ public class EmployeeServiceImpl implements EmployeeService, CustomizeRegex {
     }
 
     @Override
-    public void update() throws IOException {
+    public void update() {
         List<Employee> employeeList = ReadFileEmployeeUtil.readFile(FILE_PATH);
-
 
         int id;
         do {
@@ -78,7 +75,7 @@ public class EmployeeServiceImpl implements EmployeeService, CustomizeRegex {
     }
 
     @Override
-    public void delete() throws IOException, CustomizeException {
+    public void delete() {
         List<Employee> employeeList = ReadFileEmployeeUtil.readFile(FILE_PATH);
 
         int id;
@@ -125,7 +122,7 @@ public class EmployeeServiceImpl implements EmployeeService, CustomizeRegex {
                 break;
             case 2:
                 System.out.println("Cancel and return menu");
-                EmployeeController.employeeManagement();
+                    EmployeeController.employeeManagement();
                 break;
         }
     }

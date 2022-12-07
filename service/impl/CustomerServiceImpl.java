@@ -6,7 +6,6 @@ import util.ReadFileCustomerUtil;
 import util.WriteFileCustomerUtil;
 import validate.ValidatePerson;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,7 +14,7 @@ public class CustomerServiceImpl implements CustomerService {
     private static final String FILE_PATH = "D:\\CodeGym\\Case_Study_Java\\src\\data\\customer.csv";
 
     @Override
-    public void display() throws IOException {
+    public void display() {
         List<Customer> customerList = ReadFileCustomerUtil.readFile(FILE_PATH);
 
         System.out.println("Display list customer:");
@@ -26,11 +25,10 @@ public class CustomerServiceImpl implements CustomerService {
                 System.out.println(customer.toString());
             }
         }
-        System.out.println("----------");
     }
 
     @Override
-    public void create() throws IOException {
+    public void create() {
         List<Customer> customerList = ReadFileCustomerUtil.readFile(FILE_PATH);
 
         System.out.println("Create a new employee...");
@@ -42,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void update() throws IOException {
+    public void update() {
         List<Customer> customerList = ReadFileCustomerUtil.readFile(FILE_PATH);
 
         int customerCode;
@@ -69,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void delete() throws IOException {
+    public void delete() {
         List<Customer> customerList = ReadFileCustomerUtil.readFile(FILE_PATH);
 
         int id;

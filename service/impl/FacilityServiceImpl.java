@@ -8,7 +8,6 @@ import service.FacilityService;
 import util.*;
 import validate.ValidateFacility;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -19,7 +18,7 @@ public class FacilityServiceImpl implements FacilityService {
     private static final String ROOM_PATH = "D:\\CodeGym\\Case_Study_Java\\src\\data\\room.csv";
 
     @Override
-    public void display() throws IOException {
+    public void display(){
 
         Map<Villa, Integer> villaMap = ReadFileVillaUtil.readFile(VILLA_PATH);
         Map<Room, Integer> roomMap = ReadFileRoomUtil.readFile(ROOM_PATH);
@@ -41,21 +40,25 @@ public class FacilityServiceImpl implements FacilityService {
         } else {
             System.out.println("File is Empty");
         }
-        System.out.println("----------");
     }
 
     @Override
-    public void create() throws IOException {
+    public void create(){
         int choice;
         do {
-            System.out.print("Add new facility:\n"
-                    + "1.Add new Villa\n"
-                    + "2.Add new House\n"
-                    + "3.Add new Room\n"
-                    + "4.back to menu\n"
-                    + "Choice one option= ");
-            choice = Integer.parseInt(scanner.nextLine());
-            System.out.println("----------");
+            try {
+                System.out.print("Add new facility:\n"
+                        + "1.Add new Villa\n"
+                        + "2.Add new House\n"
+                        + "3.Add new Room\n"
+                        + "4.back to menu\n"
+                        + "Choice one option= ");
+                choice = Integer.parseInt(scanner.nextLine());
+                System.out.println("----------");
+            }catch (NumberFormatException e){
+                e.printStackTrace();
+                choice = -1;
+            }
         } while (choice < 1 || choice > 4);
 
         switch (choice) {
@@ -87,18 +90,17 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     @Override
-    public void update() throws IOException {
-
-
-    }
-
-    @Override
-    public void delete() throws IOException {
+    public void update(){
 
     }
 
     @Override
-    public void displayMaintenance() throws IOException {
+    public void delete(){
+
+    }
+
+    @Override
+    public void displayMaintenance(){
         Map<Villa, Integer> villaMap = ReadFileVillaUtil.readFile(VILLA_PATH);
         Map<Room, Integer> roomMap = ReadFileRoomUtil.readFile(ROOM_PATH);
         Map<House, Integer> houseMap = ReadFileHouseUtil.readFile(HOUSE_PATH);
@@ -119,7 +121,6 @@ public class FacilityServiceImpl implements FacilityService {
                 } else {
                     System.out.println("No House need to maintenance");
                 }
-
             }
 
             for (Map.Entry<Room, Integer> item : roomMap.entrySet()) {
@@ -132,6 +133,5 @@ public class FacilityServiceImpl implements FacilityService {
         } else {
             System.out.println("File is empty");
         }
-        System.out.println("----------");
     }
 }

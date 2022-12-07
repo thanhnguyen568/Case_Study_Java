@@ -6,7 +6,6 @@ import service.BookingService;
 import util.*;
 import validate.ValidateBooking;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -21,7 +20,7 @@ public class BookingServiceImpl implements BookingService {
     Scanner scanner = new Scanner(System.in);
 
     @Override
-    public void display() throws IOException {
+    public void display() {
         Set<Booking> bookingSet = ReadFileBookingUtil.readFile(FILE_PATH);
 
         System.out.println("Display set booking:");
@@ -35,7 +34,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void create() throws IOException {
+    public void create() {
         /**
          * Display customer list
          */
@@ -85,11 +84,16 @@ public class BookingServiceImpl implements BookingService {
         Set<Booking> bookingSet = ReadFileBookingUtil.readFile(FILE_PATH);
         int choice;
         do {
-            System.out.println("1.Booking");
-            System.out.println("2.Back to menu");
-            System.out.print("Choice a option:");
-            choice = Integer.parseInt(scanner.nextLine());
-            System.out.println("----------");
+            try {
+                System.out.println("1.Booking");
+                System.out.println("2.Back to menu");
+                System.out.print("Choice a option:");
+                choice = Integer.parseInt(scanner.nextLine());
+                System.out.println("----------");
+            } catch (NumberFormatException e) {
+                System.err.println("Enter option with wrong pattern, please re-do:");
+                choice = -1;
+            }
         } while (choice < 1 || choice > 4);
 
         switch (choice) {
@@ -103,12 +107,12 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void update() throws IOException {
+    public void update() {
 
     }
 
     @Override
-    public void delete() throws IOException {
+    public void delete() {
 
     }
 
