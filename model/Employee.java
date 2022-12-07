@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Employee extends Person {
     private int id;
     private String level;
@@ -16,7 +18,7 @@ public class Employee extends Person {
 //    public final String DIRECTOR = "Director";
     private int salary;
 
-    public Employee(String name, String birthday, String gender, String identityCode, String phoneNumber, String email, int id, String level, String position, int salary) {
+    public Employee(String name, LocalDate birthday, String gender, String identityCode, String phoneNumber, String email, int id, String level, String position, int salary) {
         super(name, birthday, gender, identityCode, phoneNumber, email);
         this.id = id;
         this.level = level;
@@ -58,7 +60,7 @@ public class Employee extends Person {
 
     @Override
     public String getInfo() {
-        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n", getName(), getBirthday(), getGender(), getIdentityCode(), getPhoneNumber(), getEmail(), getId(), getLevel(), getPosition(), getSalary());
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n", getName(), getBirthdayStr(getBirthday()), getGender(), getIdentityCode(), getPhoneNumber(), getEmail(), getId(), getLevel(), getPosition(), getSalary());
     }
 
     @Override

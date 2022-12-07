@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Customer extends Person{
     private int customerCode;
     private String customerType;
@@ -13,7 +15,7 @@ public class Customer extends Person{
     public Customer() {
     }
 
-    public Customer(String name, String birthday, String gender, String identityCode, String phoneNumber, String email, int customerCode, String customerType, String address) {
+    public Customer(String name, LocalDate birthday, String gender, String identityCode, String phoneNumber, String email, int customerCode, String customerType, String address) {
         super(name, birthday, gender, identityCode, phoneNumber, email);
         this.customerCode = customerCode;
         this.customerType = customerType;
@@ -46,7 +48,7 @@ public class Customer extends Person{
 
     @Override
     public String getInfo() {
-        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s\n", getName(), getBirthday(), getGender(), getIdentityCode(), getPhoneNumber(), getEmail(), getCustomerCode(), getCustomerType(), getAddress());
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s\n", getName(), getBirthdayStr(getBirthday()), getGender(), getIdentityCode(), getPhoneNumber(), getEmail(), getCustomerCode(), getCustomerType(), getAddress());
     }
 
     @Override

@@ -1,10 +1,12 @@
 package util;
 
 import model.Employee;
+import validate.ValidatePerson;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class ReadFileEmployeeUtil {
                 temp = line.split(",");
 
                 String name = temp[0];
-                String birthDay = temp[1];
+                LocalDate birthDay = ValidatePerson.parseLocalDate(temp[1]);
                 String gender = temp[2];
                 String idCode = temp[3];
                 String phone = temp[4];
