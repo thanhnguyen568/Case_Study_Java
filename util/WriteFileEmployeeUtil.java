@@ -2,10 +2,7 @@ package util;
 
 import model.Employee;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 public class WriteFileEmployeeUtil {
@@ -15,9 +12,11 @@ public class WriteFileEmployeeUtil {
             File file = new File(path);
             bufferedWriter = new BufferedWriter(new FileWriter(file));
             bufferedWriter.write(data);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             if (bufferedWriter != null) {
                 try {
                     bufferedWriter.close();

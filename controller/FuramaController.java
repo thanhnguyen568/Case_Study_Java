@@ -54,4 +54,8 @@ public class FuramaController {
                 break;
         }
     }
+
+    public static void main(String[] args) {
+        displayMainMenu();
+    }
 }

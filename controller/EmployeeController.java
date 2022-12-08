@@ -18,7 +18,8 @@ public class EmployeeController {
                         + "2.Add new employee\n"
                         + "3.Edit employee\n"
                         + "4.Delete employee\n"
-                        + "5.Return main menu\n"
+                        + "5.Sort by name\n"
+                        + "6.Return main menu\n"
                         + "Choice one option= ");
                 choice = Integer.parseInt(scanner.nextLine());
                 System.out.println("----------");
@@ -46,6 +47,10 @@ public class EmployeeController {
                 FuramaController.displayMainMenu();
                 break;
             case 5:
+                employeeServiceImpl.sortByName();
+                FuramaController.displayMainMenu();
+                break;
+            case 6:
                 FuramaController.displayMainMenu();
                 break;
         }

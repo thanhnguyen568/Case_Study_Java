@@ -3,7 +3,9 @@ package service.impl;
 import controller.EmployeeController;
 import model.Employee;
 import service.EmployeeService;
+import util.NameComparator;
 import util.ReadFileEmployeeUtil;
+import util.SalaryComparator;
 import util.WriteFileEmployeeUtil;
 import validate.regex.CustomizeRegex;
 import validate.ValidatePerson;
@@ -124,6 +126,28 @@ public class EmployeeServiceImpl implements EmployeeService, CustomizeRegex {
                 System.out.println("Cancel and return menu");
                     EmployeeController.employeeManagement();
                 break;
+        }
+    }
+
+    public void sortByName() {
+        List<Employee> employeeList = ReadFileEmployeeUtil.readFile(FILE_PATH);
+
+        employeeList.sort(new SalaryComparator());
+//        employeeList.sort(new SalaryComparator().reversed());
+//        employeeList.sort(new NameComparator().reversed());
+
+        /**
+         * Reversed()
+         * employeeList.sort(new NameComparator().reversed());
+         */
+
+        System.out.println("Display list employees:");
+        if (employeeList.size() == 0) {
+            System.out.println("The list is empty !");
+        } else {
+            for (Employee employee : employeeList) {
+                System.out.println(employee.toString());
+            }
         }
     }
 }

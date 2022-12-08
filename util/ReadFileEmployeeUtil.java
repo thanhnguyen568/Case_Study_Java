@@ -4,6 +4,7 @@ import model.Employee;
 import validate.ValidatePerson;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -42,6 +43,8 @@ public class ReadFileEmployeeUtil {
                     employees.add(employee);
                 }
             }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {

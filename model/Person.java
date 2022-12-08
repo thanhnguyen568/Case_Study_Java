@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class Person {
     private String name;
@@ -76,5 +77,17 @@ public abstract class Person {
     }
 
     public abstract String getInfo();
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", birthday=" + birthday +
+                ", gender='" + gender + '\'' +
+                ", identityCode='" + identityCode + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 
 }
