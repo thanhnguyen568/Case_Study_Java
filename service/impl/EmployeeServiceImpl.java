@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class EmployeeServiceImpl implements EmployeeService, CustomizeRegex {
     Scanner scanner = new Scanner(System.in);
-    private static final String FILE_PATH = "D:\\CodeGym\\case_study_java\\data\\employee.csv";
+    private static final String FILE_PATH = "D:\\CodeGym\\Case_Study_Java\\src\\data\\employee.csv";
 
     @Override
     public void display(){
