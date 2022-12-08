@@ -34,7 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService, CustomizeRegex {
         List<Employee> employeeList = ReadFileEmployeeUtil.readFile(FILE_PATH);
 
         /**
-         * T?o class validate ph??ng th?c tr? t?ng thu?c tính, ph??ng th?c tr? ??i t??ng
+         * T?o class validate ph??ng th?c tr? t?ng th?c tính, ph??ng th?c tr? ??i t??ng
          */
         System.out.println("Create a new employee...");
         Employee employee = ValidatePerson.infoEmployee();
