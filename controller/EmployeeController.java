@@ -47,7 +47,7 @@ public class EmployeeController {
                 FuramaController.displayMainMenu();
                 break;
             case 5:
-                employeeServiceImpl.sortByName();
+                employeeServiceImpl.find();
                 FuramaController.displayMainMenu();
                 break;
             case 6:

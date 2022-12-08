@@ -1,7 +1,6 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 public abstract class Person {
     private String name;

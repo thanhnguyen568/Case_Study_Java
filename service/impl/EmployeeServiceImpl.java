@@ -18,7 +18,7 @@ public class EmployeeServiceImpl implements EmployeeService, CustomizeRegex {
     private static final String FILE_PATH = "D:\\CodeGym\\Case_Study_Java\\src\\data\\employee.csv";
 
     @Override
-    public void display(){
+    public void display() {
         List<Employee> employeeList = ReadFileEmployeeUtil.readFile(FILE_PATH);
 
         System.out.println("Display list employees:");
@@ -124,7 +124,7 @@ public class EmployeeServiceImpl implements EmployeeService, CustomizeRegex {
                 break;
             case 2:
                 System.out.println("Cancel and return menu");
-                    EmployeeController.employeeManagement();
+                EmployeeController.employeeManagement();
                 break;
         }
     }
@@ -132,15 +132,11 @@ public class EmployeeServiceImpl implements EmployeeService, CustomizeRegex {
     public void sortByName() {
         List<Employee> employeeList = ReadFileEmployeeUtil.readFile(FILE_PATH);
 
-        employeeList.sort(new SalaryComparator());
-//        employeeList.sort(new SalaryComparator().reversed());
-//        employeeList.sort(new NameComparator().reversed());
-
+        employeeList.sort(new NameComparator());
         /**
          * Reversed()
          * employeeList.sort(new NameComparator().reversed());
          */
-
         System.out.println("Display list employees:");
         if (employeeList.size() == 0) {
             System.out.println("The list is empty !");
@@ -148,6 +144,33 @@ public class EmployeeServiceImpl implements EmployeeService, CustomizeRegex {
             for (Employee employee : employeeList) {
                 System.out.println(employee.toString());
             }
+        }
+    }
+
+    public void find() {
+        List<Employee> employeeList = ReadFileEmployeeUtil.readFile(FILE_PATH);
+
+        int id;
+        do {
+            try {
+                System.out.print("Input id wanna find=");
+                id = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.err.println("Number Format Exception");
+                id = -1;
+            }
+        } while (id < 0);
+
+        boolean found = false;
+        for (Employee employee : employeeList) {
+            if (id == employee.getId()) {
+                System.out.println(employee);
+                found = true;
+                System.out.println("Find successful!");
+            }
+        }
+        if (!found) {
+            System.out.println("Not found");
         }
     }
 }

@@ -9,5 +9,4 @@ public class NameComparator implements Comparator<Employee> {
     public int compare(Employee first, Employee second) {
         return first.getName().compareTo(second.getName());
     }
-
 }
