@@ -45,7 +45,6 @@ public class ValidatePerson implements CustomizeRegex {
                 e.printStackTrace();
             }
         }
-
         return birthday;
     }
 
